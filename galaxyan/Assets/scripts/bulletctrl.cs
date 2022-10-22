@@ -46,8 +46,8 @@ public class bulletctrl : MonoBehaviour
     {
         enemyctrl e = enemy.GetComponent<enemyctrl>();
         Debug.Log(e.ReturnRudius());
-        if (Mathf.Abs(this.transform.position.x - enemy.transform.position.x) < e.ReturnRudius() &&
-           Mathf.Abs(this.transform.position.y - enemy.transform.position.y) < e.ReturnRudius())
+        if (Mathf.Abs(this.transform.position.x - enemy.transform.position.x) < e.ReturnRudius()+0.1 &&
+           Mathf.Abs(this.transform.position.y - enemy.transform.position.y) < e.ReturnRudius()+0.1)
         {
             Debug.Log("“–‚½‚Á‚½");
             enemy.SendMessage("Hit");
