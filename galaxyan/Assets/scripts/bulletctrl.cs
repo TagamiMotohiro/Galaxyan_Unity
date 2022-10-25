@@ -14,7 +14,6 @@ public class bulletctrl : MonoBehaviour
     void Start()
     {
         thissprite = this.GetComponent<SpriteRenderer>();
-        
     }
 
     // Update is called once per frame
@@ -33,7 +32,7 @@ public class bulletctrl : MonoBehaviour
         }
         
     }
-    void ColisionDirection()
+    void ColisionDirection()//代入された対象に弾が当たっているかの判定
     {
         GameObject[] enemy_List = GameObject.FindGameObjectsWithTag(tagstring);
         if (enemy_List == null) { return; }
@@ -42,19 +41,18 @@ public class bulletctrl : MonoBehaviour
             BulletColision(obj);
         }
     }
-    void BulletColision(GameObject enemy)
+    void BulletColision(GameObject enemy)//自作当たり判定
     {
-        enemyctrl e = enemy.GetComponent<enemyctrl>();
-        Debug.Log(e.ReturnRudius());
-        if (Mathf.Abs(this.transform.position.x - enemy.transform.position.x) < e.ReturnRudius()+0.1 &&
-           Mathf.Abs(this.transform.position.y - enemy.transform.position.y) < e.ReturnRudius()+0.1)
+        var e = enemy.GetComponent<CollisionCtrl>();
+        if (Mathf.Abs(this.transform.position.x - enemy.transform.position.x) < e.ReturnRadius()+0.1 &&
+           Mathf.Abs(this.transform.position.y - enemy.transform.position.y) < e.ReturnRadius()+0.1)
         {
             Debug.Log("当たった");
             enemy.SendMessage("Hit");
             Destroy(this.gameObject);
         }
     }
-    public void SetTagString(string tag)
+    public void SetTagString(string tag)//当たる対象をtagを用いて設定する際に使用する文字列の変更
     {
         tagstring = tag;
     }

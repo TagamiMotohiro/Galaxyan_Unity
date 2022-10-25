@@ -38,14 +38,15 @@ public class playerctrl : MonoBehaviour
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject e in enemys)
         {
-            enemyctrl c = e.GetComponent<enemyctrl>();
-            if (Mathf.Abs(e.transform.position.magnitude - this.transform.position.magnitude) < c.ReturnRudius() + this.radius)
-            {
-                HitPlayer();
-            }
+           var c = e.GetComponent<CollisionCtrl>();
+            if (Mathf.Abs(e.transform.position.x - this.transform.position.x) > (this.radius + c.ReturnRadius()))
+            { return; }
+            if (Mathf.Abs(e.transform.position.y - this.transform.position.y) > (this.radius + c.ReturnRadius()))
+            { return; }
+           this.Hit();
         }
     }
-    void HitPlayer()
+    void Hit()
     {
         this.gameObject.SetActive(false);
     }

@@ -6,39 +6,52 @@ public class enemyctrl : MonoBehaviour
 {
     public enum STATE//ステータスを定義
     { 
+        back,//自分のポジションへ帰還中
         idle,//待ち
         takeof,//突撃のために隊列から離脱し浮きあがる
         attack//浮き上がったのちに突撃
     }
     public STATE state;
-    Vector3[] flyPoint = new Vector3[1];//飛び出しのポイント
+    Vector3[] flyPoint = new Vector3[2];//飛び出しのポイント
     Vector3 Stert_Point;//戻ってくる地点
-    Vector3 fly_Terget;//突撃対象地点
+    public float magazine;
+    public int late;
+    int cool_time;
     float now_Point;//曲線補完用の数値
-    float rudius;//自身の大きさ
     public float fly_Speed;//飛び出しのスピード
     bool flyed = false;//自分が飛び出しているかの判定
-    GameObject bulletPrefub;
+    public GameObject bulletPrefub;
+    Renderer renderer;
     GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        renderer = GetComponent<Renderer>();
         player = GameObject.Find("player");
-        rudius = 0.25f;
         Stert_Point = this.transform.position;
         for (int i = 0; i < flyPoint.Length; i++)
         {
             flyPoint[i] = this.transform.GetChild(i).gameObject.transform.position;
         }
-        fly_Terget = flyPoint[0];
+        
         //new Vector2(this.transform.localScale.x/2,this.transform.localScale.y/2);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-        if (state==STATE.takeof)
+	void Update()
+	{
+        Debug.Log(renderer.isVisible);
+        if (this.state == STATE.attack && !renderer.isVisible)
+        {
+            this.state = STATE.back;
+            this.transform.position = new Vector3(Stert_Point.x, 5, 0);
+            this.transform.rotation = Quaternion.identity;
+        }
+        if (this.state == STATE.back)
+        {
+            now_Point = 0;
+            Return_HomePos();
+        }
+        if (state == STATE.takeof)
         {
             looktoPlyer();
             Fly();
@@ -47,35 +60,66 @@ public class enemyctrl : MonoBehaviour
         {
             looktoPlyer();
             Attack();
+            BulletFire();
         }
     }
-    void Return_HomePos()//突撃が終わり生きていたら所定の位置に戻る
+	// Update is called once per frame
+	void Return_HomePos()//突撃が終わり生きていたら所定の位置に戻る
     {
-
-    }
-    public float ReturnRudius()
-    {
-        return rudius;
+        this.transform.position += Vector3.down*Time.deltaTime;
+        if (this.transform.position.y < Stert_Point.y)
+        {
+            this.state = STATE.idle;
+        }
     }
     private void Hit()//弾が当たったときに呼ばれるコールバック
     {
         Destroy(this.gameObject);
     }
-    private void Fly()//所定の立ち位置から離脱し飛び出す
+    protected void Fly()//所定の立ち位置から離脱し飛び出す
     {
-        if (Mathf.Abs(this.transform.position.magnitude - flyPoint[0].magnitude) < 0.1f && !flyed)
+        //if (Mathf.Abs(this.transform.position.magnitude - flyPoint[0].magnitude) < 0.1f && !flyed)
+        //{
+        //    this.state = STATE.attack;
+        //}
+        if (this.state == STATE.takeof)
         {
-            this.state = STATE.attack;
+            this.transform.position = GetCurve(flyPoint[0], flyPoint[1], now_Point);
+            now_Point+=fly_Speed*Time.deltaTime;
+            if (now_Point >= 1)
+            {
+                this.state = STATE.attack;
+            }
         }
-        this.transform.position = Vector3.Slerp(Stert_Point, fly_Terget, now_Point);
-        now_Point += 1 * Time.deltaTime * fly_Speed;
     }
     public virtual void Attack()//それぞれのやり方で突撃を行うオーバーライド
     {
         
     }
-    private void looktoPlyer()//プレイヤーのほうを向き続ける
+    protected void looktoPlyer()//プレイヤーのほうを向き続ける
     {
         this.transform.rotation = Quaternion.FromToRotation(Vector3.up, player.transform.position);
+    }
+    Vector3 GetCurve(Vector3 a,Vector3 b,float t)
+    {
+        Vector3 result;
+        Vector3 v0 = Vector3.Lerp(Stert_Point, a, t);
+        Vector3 v1 = Vector3.Lerp(a, b, t);
+
+        result = Vector3.Lerp(v0,v1,t);
+
+        return result;
+    }
+    protected void BulletFire()
+    {
+        if (cool_time >= late && magazine > 0)
+        {
+            GameObject g =
+            Instantiate(bulletPrefub, this.transform.position, Quaternion.FromToRotation(Vector3.up, this.transform.up));
+            g.GetComponent<bulletctrl>().SetTagString("Player");
+            cool_time = 0;
+            magazine--;
+        }
+        cool_time++;
     }
 }
