@@ -24,8 +24,8 @@ public class playerctrl : MonoBehaviour
     void PlayerMove()
     {
         horizontal += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        if (horizontal < -8.6) { horizontal = -8.6f; }
-        if (horizontal > 8.6) { horizontal = 8.6f; }
+        if (horizontal < -3.5f) { horizontal = -3.5f; }
+        if (horizontal > 3.5f) { horizontal = 3.5f; }
         this.transform.position = new Vector3(horizontal, -4, 0);
         if (Input.GetKeyDown(KeyCode.Space)&&b==null)
         {

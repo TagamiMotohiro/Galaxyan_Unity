@@ -72,8 +72,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9026608353738638919}
   - component: {fileID: 9026608353738638936}
-  - component: {fileID: 7909606950659687545}
   - component: {fileID: 2113163719667005871}
+  - component: {fileID: 1022341743}
   m_Layer: 0
   m_Name: Enemy(purple)
   m_TagString: Enemy
@@ -90,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 9026608353738638937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.05, y: 1.26, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.42045, y: 0.42045, z: 0.8409}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7909606950814409829}
@@ -150,24 +150,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7909606950659687545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9026608353738638937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982b1d313be73e1499567ef5d3cd8eff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 1
-  magazine: 2
-  late: 60
-  fly_Speed: 1
-  bulletPrefub: {fileID: 2463958891282877227, guid: 41a5838ccb05b2a48bbeb715a9527ca3, type: 3}
-  attack_Speed: 5
 --- !u!114 &2113163719667005871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,4 +162,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0006bc92bbc971a498db81c8649740b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.25
+  radius: 0.15
+--- !u!114 &1022341743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9026608353738638937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78706f3b7aca0f642b4643f51d1092e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  magazine: 2
+  late: 60
+  fly_Speed: 1
+  bulletPrefub: {fileID: 2463958891282877227, guid: 41a5838ccb05b2a48bbeb715a9527ca3, type: 3}
+  attack_Speed: 5

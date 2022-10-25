@@ -90,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 1189062333100216680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.05, y: 1.26, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.446965, y: 0.446965, z: 0.89393}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 928445268}
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982b1d313be73e1499567ef5d3cd8eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  state: 1
   magazine: 2
   late: 60
   fly_Speed: 1
@@ -180,4 +180,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0006bc92bbc971a498db81c8649740b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.25
+  radius: 0.15
