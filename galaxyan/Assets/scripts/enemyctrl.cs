@@ -12,6 +12,7 @@ public class enemyctrl : MonoBehaviour
         attack//浮き上がったのちに突撃
     }
     public STATE state;
+    protected float attack_Speed;//プレイヤーに突撃するときの速度
     Vector3[] flyPoint = new Vector3[2];//飛び出しのポイント
     Vector3 Stert_Point;//戻ってくる地点
     public float magazine;
@@ -21,26 +22,25 @@ public class enemyctrl : MonoBehaviour
     public float fly_Speed;//飛び出しのスピード
     bool flyed = false;//自分が飛び出しているかの判定
     public GameObject bulletPrefub;
-    Renderer renderer;
+    Renderer my_Rend;
     GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        attack_Speed = 3;
+        my_Rend = GetComponent<Renderer>();
         player = GameObject.Find("player");
         Stert_Point = this.transform.position;
         for (int i = 0; i < flyPoint.Length; i++)
         {
             flyPoint[i] = this.transform.GetChild(i).gameObject.transform.position;
         }
-        
-        //new Vector2(this.transform.localScale.x/2,this.transform.localScale.y/2);
     }
 
 	void Update()
 	{
-        Debug.Log(renderer.isVisible);
-        if (this.state == STATE.attack && !renderer.isVisible)
+        //Debug.Log(renderer.isVisible);
+        if (this.state == STATE.attack && this.transform.position.y<-5)
         {
             this.state = STATE.back;
             this.transform.position = new Vector3(Stert_Point.x, 5, 0);
@@ -48,6 +48,7 @@ public class enemyctrl : MonoBehaviour
         }
         if (this.state == STATE.back)
         {
+            this.magazine = 2;
             now_Point = 0;
             Return_HomePos();
         }
@@ -78,10 +79,6 @@ public class enemyctrl : MonoBehaviour
     }
     protected void Fly()//所定の立ち位置から離脱し飛び出す
     {
-        //if (Mathf.Abs(this.transform.position.magnitude - flyPoint[0].magnitude) < 0.1f && !flyed)
-        //{
-        //    this.state = STATE.attack;
-        //}
         if (this.state == STATE.takeof)
         {
             this.transform.position = GetCurve(flyPoint[0], flyPoint[1], now_Point);
@@ -92,13 +89,17 @@ public class enemyctrl : MonoBehaviour
             }
         }
     }
+    void TakeOf()
+    {
+        this.state = STATE.takeof;
+    }
     public virtual void Attack()//それぞれのやり方で突撃を行うオーバーライド
     {
         
     }
     protected void looktoPlyer()//プレイヤーのほうを向き続ける
     {
-        this.transform.rotation = Quaternion.FromToRotation(Vector3.up, player.transform.position);
+        this.transform.rotation = Quaternion.FromToRotation(Vector3.up, player.transform.position-this.transform.position);
     }
     Vector3 GetCurve(Vector3 a,Vector3 b,float t)
     {

@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class playerctrl : MonoBehaviour
 {
     float radius;
     public float speed;
     float horizontal=0;
+    public List<GameObject> enemy_List;
     public GameObject bullet;
     public GameObject b;
     // Start is called before the first frame update
     void Start()
     {
         radius = 0.25f;
+        enemy_List = GameObject.FindGameObjectsWithTag("Enemy").ToList();
     }
 
     // Update is called once per frame
@@ -35,15 +38,18 @@ public class playerctrl : MonoBehaviour
     }
     void CollisionEnemy()
     {
-        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject e in enemys)
+        enemy_List.RemoveAll(a=>a==null);
+        foreach (GameObject e in enemy_List)
         {
-           var c = e.GetComponent<CollisionCtrl>();
-            if (Mathf.Abs(e.transform.position.x - this.transform.position.x) > (this.radius + c.ReturnRadius()))
-            { return; }
-            if (Mathf.Abs(e.transform.position.y - this.transform.position.y) > (this.radius + c.ReturnRadius()))
-            { return; }
-           this.Hit();
+            var c = e.GetComponent<CollisionCtrl>();
+            if (Mathf.Abs(e.transform.position.x - transform.position.x) > (this.radius + c.ReturnRadius()))
+            { continue; }
+            Debug.Log(e.name + "“ž’B");
+            if (Mathf.Abs(e.transform.position.y - transform.position.y) > (this.radius + c.ReturnRadius()))
+            { continue; }
+            if (Mathf.Abs(e.transform.position.z - transform.position.z) > (this.radius + c.ReturnRadius()))
+            { continue; }
+            this.Hit();
         }
     }
     void Hit()

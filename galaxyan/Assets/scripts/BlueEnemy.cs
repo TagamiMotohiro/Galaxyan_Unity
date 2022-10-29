@@ -8,7 +8,6 @@ public class BlueEnemy : enemyctrl
 	bool firstflame=true;
 	Vector3 atackPos;
 	Vector3 atackvector;
-	public float attack_Speed;//プレイヤーに突撃するときの速度
 	public override void Attack()
 	{
 		if (firstflame)
@@ -20,5 +19,4 @@ public class BlueEnemy : enemyctrl
 		}
 		this.transform.position += atackvector * Time.deltaTime * attack_Speed;
 	}
-	
 }

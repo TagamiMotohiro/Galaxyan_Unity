@@ -23,8 +23,15 @@ public class bulletctrl : MonoBehaviour
         ColisionDirection();
     }
     void BulletTransForm()
-    { 
-        this.transform.position += this.transform.up*speed*Time.deltaTime;
+    {
+        if (tagstring == "Player")
+        {
+            this.transform.position += Vector3.down * speed * Time.deltaTime;
+        }
+        else
+        {
+            this.transform.position += this.transform.up.normalized * speed * Time.deltaTime;
+        }
         bullet_alive++;
         if (!thissprite.isVisible&&bullet_alive>5f)
         {
@@ -47,7 +54,6 @@ public class bulletctrl : MonoBehaviour
         if (Mathf.Abs(this.transform.position.x - enemy.transform.position.x) < e.ReturnRadius()+0.1 &&
            Mathf.Abs(this.transform.position.y - enemy.transform.position.y) < e.ReturnRadius()+0.1)
         {
-            Debug.Log("“–‚½‚Á‚½");
             enemy.SendMessage("Hit");
             Destroy(this.gameObject);
         }
