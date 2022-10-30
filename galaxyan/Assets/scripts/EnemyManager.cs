@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField]
     List<GameObject> blueEnemy_List;
     List<GameObject> redEnemy_List;
     List<GameObject> Boss_List;
