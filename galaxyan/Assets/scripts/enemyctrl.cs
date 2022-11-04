@@ -24,9 +24,11 @@ public class enemyctrl : MonoBehaviour
     public GameObject bulletPrefub;
     Renderer my_Rend;
     GameObject player;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         attack_Speed = 3;
         my_Rend = GetComponent<Renderer>();
         player = GameObject.Find("player");
@@ -63,6 +65,15 @@ public class enemyctrl : MonoBehaviour
             Attack();
             BulletFire();
         }
+        if (state == STATE.idle)
+        {
+            anim.SetBool("Idle", true);
+        }
+        else
+        {
+            anim.SetBool("Idle", false);
+        }
+        
     }
 	// Update is called once per frame
 	void Return_HomePos()//“ËŒ‚‚ªI‚í‚è¶‚«‚Ä‚¢‚½‚çŠ’è‚ÌˆÊ’u‚É–ß‚é
@@ -104,10 +115,10 @@ public class enemyctrl : MonoBehaviour
     Vector3 GetCurve(Vector3 a,Vector3 b,float t)
     {
         Vector3 result;
-        Vector3 v0 = Vector3.Lerp(Stert_Point, a, t);
-        Vector3 v1 = Vector3.Lerp(a, b, t);
+        Vector3 p0 = Vector3.Lerp(Stert_Point, a, t);
+        Vector3 p1 = Vector3.Lerp(a, b, t);
 
-        result = Vector3.Lerp(v0,v1,t);
+        result = Vector3.Lerp(p0,p1,t);
 
         return result;
     }

@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 1189062333100216681}
   - component: {fileID: 1971016}
   - component: {fileID: 8113206869971480222}
-  - component: {fileID: -6834555080671369110}
+  - component: {fileID: 1624610020}
   m_Layer: 0
   m_Name: Enemy(Blue)
   m_TagString: Enemy
@@ -91,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 1189062333100216680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.05, y: 1.26, z: 0}
-  m_LocalScale: {x: 0.446965, y: 0.446965, z: 0.89393}
+  m_LocalScale: {x: 0.45077178, y: 0.45077178, z: 1.1269294}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 928445268}
@@ -141,7 +141,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -838909978, guid: cd865b6964c9b5c4eb31b746daafc13e, type: 3}
-  m_Color: {r: 0.18135782, g: 0.48820084, b: 0.9433962, a: 1}
+  m_Color: {r: 0, g: 0.95776176, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.15
---- !u!95 &-6834555080671369110
+--- !u!95 &1624610020
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ Animator:
   m_GameObject: {fileID: 1189062333100216680}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bbcba9d7b29763e449e9097fdd88ca0f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

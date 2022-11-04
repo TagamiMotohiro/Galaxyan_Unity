@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     List<GameObject> Boss_List;
     List<GameObject> purpleEnemy_List;
     public int interval=120;
+    public float speed;
     int coolTime=0;
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,11 @@ public class EnemyManager : MonoBehaviour
             blueEnemy();
             coolTime = 0;
         }
+        if (this.transform.position.x < 0.6f)
+        { speed = -(speed); }
+		if (this.transform.position.x > -0.6f)
+		{ speed = -(speed); }
+		this.transform.position += new Vector3(speed*Time.deltaTime,0,0);
     }
     void blueEnemy()
     {

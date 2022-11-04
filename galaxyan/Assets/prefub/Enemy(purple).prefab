@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 9026608353738638936}
   - component: {fileID: 2113163719667005871}
   - component: {fileID: 1022341743}
+  - component: {fileID: 4994505522424954989}
   m_Layer: 0
   m_Name: Enemy(purple)
   m_TagString: Enemy
@@ -90,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 9026608353738638937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.05, y: 1.26, z: 0}
-  m_LocalScale: {x: 0.42045, y: 0.42045, z: 0.8409}
+  m_LocalScale: {x: 0.45077178, y: 0.45077178, z: 0.94763494}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7909606950814409829}
@@ -180,3 +181,23 @@ MonoBehaviour:
   late: 60
   fly_Speed: 1
   bulletPrefub: {fileID: 2463958891282877227, guid: 41a5838ccb05b2a48bbeb715a9527ca3, type: 3}
+--- !u!95 &4994505522424954989
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9026608353738638937}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bbcba9d7b29763e449e9097fdd88ca0f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

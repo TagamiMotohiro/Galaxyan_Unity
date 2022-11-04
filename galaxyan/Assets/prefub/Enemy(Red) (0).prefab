@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7898897324374249307}
   - component: {fileID: 9015890483666095482}
   - component: {fileID: 975317433470988460}
-  - component: {fileID: -2808787517435742267}
+  - component: {fileID: 1189062331790317283}
   m_Layer: 0
   m_Name: Enemy(Red) (0)
   m_TagString: Enemy
@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7898897324374249306}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1600001, y: 4, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.46864992, y: 0.46864992, z: 1.1716248}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9015890483384610150}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.15
---- !u!95 &-2808787517435742267
+--- !u!95 &1189062331790317283
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
