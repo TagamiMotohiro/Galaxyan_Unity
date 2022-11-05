@@ -167,7 +167,7 @@ MonoBehaviour:
   magazine: 2
   late: 60
   fly_Speed: 1
-  bulletPrefub: {fileID: 2463958891282877227, guid: 41a5838ccb05b2a48bbeb715a9527ca3, type: 3}
+  bulletPrefub: {fileID: 8952631433250794541, guid: d3e1cdf4242b0054ab3ef4eff917939e, type: 3}
 --- !u!114 &8113206869971480222
 MonoBehaviour:
   m_ObjectHideFlags: 0

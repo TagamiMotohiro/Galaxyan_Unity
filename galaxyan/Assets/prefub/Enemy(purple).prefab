@@ -141,7 +141,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -838909978, guid: cd865b6964c9b5c4eb31b746daafc13e, type: 3}
-  m_Color: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
+  m_Color: {r: 0.8215008, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   magazine: 2
   late: 60
   fly_Speed: 1
-  bulletPrefub: {fileID: 2463958891282877227, guid: 41a5838ccb05b2a48bbeb715a9527ca3, type: 3}
+  bulletPrefub: {fileID: 8952631433250794541, guid: d3e1cdf4242b0054ab3ef4eff917939e, type: 3}
 --- !u!95 &4994505522424954989
 Animator:
   serializedVersion: 4

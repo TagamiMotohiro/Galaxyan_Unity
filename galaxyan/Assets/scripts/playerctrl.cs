@@ -44,7 +44,6 @@ public class playerctrl : MonoBehaviour
             var c = e.GetComponent<CollisionCtrl>();
             if (Mathf.Abs(e.transform.position.x - transform.position.x) > (this.radius + c.ReturnRadius()))
             { continue; }
-            Debug.Log(e.name + "“ž’B");
             if (Mathf.Abs(e.transform.position.y - transform.position.y) > (this.radius + c.ReturnRadius()))
             { continue; }
             if (Mathf.Abs(e.transform.position.z - transform.position.z) > (this.radius + c.ReturnRadius()))

@@ -14,25 +14,27 @@ public class enemyctrl : MonoBehaviour
     public STATE state;
     protected float attack_Speed;//プレイヤーに突撃するときの速度
     Vector3[] flyPoint = new Vector3[2];//飛び出しのポイント
+    Vector3 p1;
     Vector3 Stert_Point;//戻ってくる地点
     public float magazine;
     public int late;
     int cool_time;
     float now_Point;//曲線補完用の数値
+    float t=0;
     public float fly_Speed;//飛び出しのスピード
     bool flyed = false;//自分が飛び出しているかの判定
     public GameObject bulletPrefub;
-    Renderer my_Rend;
+    GameObject maneger;
     GameObject player;
     Animator anim;
     // Start is called before the first frame update
     void Start()
     {
+        maneger = GameObject.Find("Enemy_manager");
         anim = GetComponent<Animator>();
         attack_Speed = 3;
-        my_Rend = GetComponent<Renderer>();
         player = GameObject.Find("player");
-        Stert_Point = this.transform.position;
+        p1 = this.transform.position;
         for (int i = 0; i < flyPoint.Length; i++)
         {
             flyPoint[i] = this.transform.GetChild(i).gameObject.transform.position;
@@ -41,6 +43,8 @@ public class enemyctrl : MonoBehaviour
 
 	void Update()
 	{
+        Stert_Point = new Vector3(p1.x+maneger.transform.position.x,p1.y,p1.z);
+        Debug.Log(gameObject.name + (p1.x + maneger.transform.position.x));
         //Debug.Log(renderer.isVisible);
         if (this.state == STATE.attack && this.transform.position.y<-5)
         {
@@ -78,11 +82,13 @@ public class enemyctrl : MonoBehaviour
 	// Update is called once per frame
 	void Return_HomePos()//突撃が終わり生きていたら所定の位置に戻る
     {
-        this.transform.position += Vector3.down*Time.deltaTime;
+        this.transform.position = new Vector3(Stert_Point.x,this.transform.position.y-t,0);
         if (this.transform.position.y < Stert_Point.y)
         {
             this.state = STATE.idle;
+            t = 0;
         }
+        t+=0.1f*Time.deltaTime;
     }
     private void Hit()//弾が当たったときに呼ばれるコールバック
     {
