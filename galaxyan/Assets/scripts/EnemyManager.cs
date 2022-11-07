@@ -9,7 +9,8 @@ public class EnemyManager : MonoBehaviour
     List<GameObject> Boss_List;
     List<GameObject> purpleEnemy_List;
     public int interval=120;
-    public float speed;
+    public float formation_Speed;
+    int n;
     int coolTime=0;
     // Start is called before the first frame update
     void Start()
@@ -47,23 +48,89 @@ public class EnemyManager : MonoBehaviour
         coolTime++;
         if (coolTime > interval)
         {
-            blueEnemy();
+            switch (n=Random.Range((int)0,(int)3))
+            {
+                case 0:
+                blueEnemy();
+                    break;
+                case 1:
+                PurpleEnemy();
+                    break;
+                case 2:
+                BossEnemy();
+                    break;
+                default:
+                    break;
+            }
             coolTime = 0;
         }
         if (this.transform.position.x < 0.6f)
-        { speed = -(speed); }
+        { formation_Speed = -(formation_Speed); }
 		if (this.transform.position.x > -0.6f)
-		{ speed = -(speed); }
-		this.transform.position += new Vector3(speed*Time.deltaTime,0,0);
+		{ formation_Speed = -(formation_Speed); }
+		this.transform.position += new Vector3(formation_Speed*Time.deltaTime,0,0);
     }
     void blueEnemy()
     {
         if (blueEnemy_List == null) { return; }
         blueEnemy_List.RemoveAll(a=>a==null);
-        GameObject b = blueEnemy_List[Random.Range(0, blueEnemy_List.Count)];
-        if (b.GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+        for (int i = 0; i < blueEnemy_List.Count; i++)
         {
-            b.SendMessage("TakeOf");
+            if (blueEnemy_List[i] == null)
+            {
+                continue;
+            } else if(blueEnemy_List[i].GetComponent<enemyctrl>().state==enemyctrl.STATE.idle)
+            {
+                blueEnemy_List[i].SendMessage("TakeOf");
+                break;
+            }
+        }
+    }
+    void PurpleEnemy()
+    {
+        if (purpleEnemy_List == null) { return; }
+        purpleEnemy_List.RemoveAll(a => a == null);
+        for (int i = 0; i < purpleEnemy_List.Count; i++)
+        {
+            if (purpleEnemy_List[i] == null)
+            {
+                continue;
+            }
+            else if (purpleEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+            {
+                purpleEnemy_List[i].SendMessage("TakeOf");
+                break;
+            }
+        }
+    }
+    void BossEnemy()
+    {
+        if (Boss_List == null) {
+            RedEnemy();
+            return; 
+        }
+        int r = Random.Range((int)0, (int)2);
+        GameObject g = Boss_List[r];
+        if (g != null)
+        {
+            g.SendMessage("TakeOf");
+        }
+    }
+    void RedEnemy()
+    {
+        if (redEnemy_List == null) { return; }
+        redEnemy_List.RemoveAll(a => a == null);
+        for (int i = 0; i < redEnemy_List.Count; i++)
+        {
+            if (redEnemy_List[i] == null)
+            {
+                continue;
+            }
+            else if (redEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+            {
+                redEnemy_List[i].SendMessage("TakeOf");
+                break;
+            }
         }
     }
 }
