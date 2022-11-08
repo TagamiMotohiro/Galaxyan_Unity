@@ -106,6 +106,7 @@ MonoBehaviour:
   late: 60
   fly_Speed: 1
   bulletPrefub: {fileID: 8952631433250794541, guid: d3e1cdf4242b0054ab3ef4eff917939e, type: 3}
+  effect: {fileID: 1134129239631916, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
 --- !u!114 &975317433470988460
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,13 +24,14 @@ public class enemyctrl : MonoBehaviour
     public float fly_Speed;//飛び出しのスピード
     bool flyed = false;//自分が飛び出しているかの判定
     public GameObject bulletPrefub;
+    public GameObject effect;
     GameObject maneger;
     GameObject player;
     Animator anim;
     // Start is called before the first frame update
     void Start()
     {
-        maneger = GameObject.Find("Enemy_manager");
+        maneger = this.transform.root.gameObject;
         anim = GetComponent<Animator>();
         attack_Speed = 3;
         player = GameObject.Find("player");
@@ -44,8 +45,7 @@ public class enemyctrl : MonoBehaviour
 	void Update()
 	{
         Stert_Point = new Vector3(p1.x+maneger.transform.position.x,p1.y,p1.z);
-        Debug.Log(gameObject.name + (p1.x + maneger.transform.position.x));
-        //Debug.Log(renderer.isVisible);
+        
         if (this.state == STATE.attack && this.transform.position.y<-5)
         {
             this.state = STATE.back;
@@ -92,6 +92,7 @@ public class enemyctrl : MonoBehaviour
     }
     private void Hit()//弾が当たったときに呼ばれるコールバック
     {
+        Instantiate(effect, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
     protected void Fly()//所定の立ち位置から離脱し飛び出す

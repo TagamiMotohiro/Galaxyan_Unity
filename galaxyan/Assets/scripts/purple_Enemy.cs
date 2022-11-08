@@ -5,7 +5,7 @@ using UnityEngine;
 public class purple_Enemy : enemyctrl
 {
 	bool firstflame = true;
-	Vector3 atackPos;
+	GameObject atackPos;
 	Vector3 atackvector;
 	public float amplitude=0.3f;
 	float t1 = 1;
@@ -14,10 +14,17 @@ public class purple_Enemy : enemyctrl
 		if (firstflame)
 		{
 			//“ËŒ‚‚·‚éƒxƒNƒgƒ‹‚ğŒˆ’è
-			atackPos = GameObject.Find("player").transform.position;
-			atackvector = (atackPos - this.transform.position).normalized;
+			atackPos = GameObject.Find("player");
+			if (atackPos != null)
+			{
+				atackvector = (atackPos.transform.position - this.transform.position).normalized;
+			}
+			else 
+			{
+				atackvector = Vector3.down;
+			}
 			firstflame = false;
 		}
-		this.transform.position += new Vector3(atackvector.x*Mathf.Cos(2 * Mathf.PI *0.5f* Time.time), atackvector.y * Time.deltaTime, 0);
+		this.transform.position += atackvector * Time.deltaTime * attack_Speed;//“®‚«‚ª‚í‚©‚ç‚È‚·‚¬‚é‚Ì‚Å‚Æ‚è‚ ‚¦‚¸‚±‚Ìó‘Ô‚Å
 	}
 }

@@ -9,12 +9,13 @@ public class EnemyManager : MonoBehaviour
     List<GameObject> Boss_List;
     List<GameObject> purpleEnemy_List;
     public int interval=120;
-    public float formation_Speed;
+    float formation_Speed;
     int n;
     int coolTime=0;
     // Start is called before the first frame update
     void Start()
     {
+        formation_Speed = 0.4f;
         blueEnemy_List = new List<GameObject>();
         purpleEnemy_List = new List<GameObject>();
         redEnemy_List = new List<GameObject>();
@@ -110,11 +111,40 @@ public class EnemyManager : MonoBehaviour
             return; 
         }
         int r = Random.Range((int)0, (int)2);
-        GameObject g = Boss_List[r];
-        if (g != null)
+        GameObject e = Boss_List[r];
+        if (e != null)
         {
-            g.SendMessage("TakeOf");
+            if (e.GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+            {
+                e.SendMessage("TakeOf");
+            }
         }
+        if (r == 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (redEnemy_List[i]!=null) {
+                    if (redEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+                    {
+                        redEnemy_List[i].SendMessage("TakeOf");
+                    }
+                }
+            }
+        }
+        if (r == 1)
+        {
+            for (int i = 3; i < 6; i++)
+            {
+                if (redEnemy_List[i] != null)
+                {
+                    if (redEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+                    {
+                        redEnemy_List[i].SendMessage("TakeOf");
+                    }
+                }
+            }
+        }
+        
     }
     void RedEnemy()
     {

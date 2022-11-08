@@ -11,6 +11,7 @@ public class playerctrl : MonoBehaviour
     public List<GameObject> enemy_List;
     public GameObject bullet;
     public GameObject b;
+    public GameObject player_Expro;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +54,7 @@ public class playerctrl : MonoBehaviour
     }
     void Hit()
     {
+        Instantiate(player_Expro,this.transform.position,Quaternion.identity);
         this.gameObject.SetActive(false);
     }
 }
