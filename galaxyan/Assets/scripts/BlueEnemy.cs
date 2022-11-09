@@ -10,6 +10,9 @@ public class BlueEnemy : enemyctrl
 	Vector3 atackvector;
 	public override void Attack()
 	{
+		if (this.state != STATE.attack) {
+			firstflame = true;
+			return; }
 		if (firstflame)
 		{	
 			//“ËŒ‚‚·‚éƒxƒNƒgƒ‹‚ðŒˆ’è

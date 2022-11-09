@@ -66,7 +66,6 @@ public class enemyctrl : MonoBehaviour
         if (state == STATE.attack)
         {
             looktoPlyer();
-            Attack();
             BulletFire();
         }
         if (state == STATE.idle)
@@ -77,7 +76,7 @@ public class enemyctrl : MonoBehaviour
         {
             anim.SetBool("Idle", false);
         }
-        
+        Attack();
     }
 	// Update is called once per frame
 	void Return_HomePos()//“ËŒ‚‚ªI‚í‚è¶‚«‚Ä‚¢‚½‚çŠ’è‚ÌˆÊ’u‚É–ß‚é
