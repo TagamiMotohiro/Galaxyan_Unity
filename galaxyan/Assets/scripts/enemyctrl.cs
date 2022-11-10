@@ -13,6 +13,7 @@ public class enemyctrl : MonoBehaviour
     }
     public STATE state;
     protected float attack_Speed;//プレイヤーに突撃するときの速度
+    Transform[] flyobfj = new Transform[2];
     Vector3[] flyPoint = new Vector3[2];//飛び出しのポイント
     Vector3 p1;
     Vector3 Stert_Point;//戻ってくる地点
@@ -38,7 +39,13 @@ public class enemyctrl : MonoBehaviour
         p1 = this.transform.position;
         for (int i = 0; i < flyPoint.Length; i++)
         {
-            flyPoint[i] = this.transform.GetChild(i).gameObject.transform.position;
+            flyobfj[i] = this.transform.GetChild(i).gameObject.transform;
+            flyPoint[i] = flyobfj[i].position;
+            if (this.transform.position.x < 0)
+            {
+                flyobfj[i].localPosition = new Vector3(-flyobfj[i].localPosition.x, flyobfj[i].localPosition.y, 0);
+                flyPoint[i] = flyobfj[i].position;
+            }
         }
     }
 

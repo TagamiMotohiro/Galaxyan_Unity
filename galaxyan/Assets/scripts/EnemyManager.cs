@@ -121,7 +121,7 @@ public class EnemyManager : MonoBehaviour
         }
         if (r == 0)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (redEnemy_List[i]!=null) {
                     if (redEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
