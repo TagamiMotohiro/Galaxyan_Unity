@@ -8,7 +8,7 @@ public class purple_Enemy : enemyctrl
 	GameObject atackPos;
 	Vector3 atackvector;
 	Vector3 curvevector;
-	float x=0;
+	float x;
 	float pos_x;
 	float t1 = 0;
 	public override void Attack()
@@ -16,6 +16,7 @@ public class purple_Enemy : enemyctrl
 		if (this.state != STATE.attack) {
 			firstflame = true;
 			t1 = 90f;
+			x = Random.Range(2.5f,3.5f);
 			return; }
 		if (firstflame)
 		{
@@ -24,7 +25,7 @@ public class purple_Enemy : enemyctrl
 			Debug.Log("firstpos=" + pos_x.ToString());
 		}
 		Debug.Log((Mathf.Cos(t1*Mathf.Deg2Rad)));
-		this.transform.position = new Vector3(pos_x+(Mathf.Cos(t1*Mathf.Deg2Rad)*2.5f),   this.transform.position.y-(this.attack_Speed*Time.deltaTime),0f);
+		this.transform.position = new Vector3(pos_x+(Mathf.Cos(t1*Mathf.Deg2Rad)*x),   this.transform.position.y-(this.attack_Speed*Time.deltaTime),0f);
 		t1 += (0.5f);//提案　ランダムで変更　特定の時間まで倍率変更
 	}
 }

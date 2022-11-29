@@ -67,7 +67,7 @@ public class enemyctrl : MonoBehaviour
         }
         if (state == STATE.takeof)
         {
-            looktoPlyer();
+            //looktoPlyer();
             Fly();
         }
         if (state == STATE.attack)
@@ -106,6 +106,7 @@ public class enemyctrl : MonoBehaviour
         if (this.state == STATE.takeof)
         {
             this.transform.position = GetCurve(flyPoint[0], flyPoint[1], now_Point);
+            this.transform.rotation = Quaternion.AngleAxis(now_Point*180, Vector3.forward);
             now_Point+=fly_Speed*Time.deltaTime;
             if (now_Point >= 1)
             {

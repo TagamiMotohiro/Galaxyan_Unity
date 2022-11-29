@@ -133,7 +133,7 @@ public class EnemyManager : MonoBehaviour
         }
         if (r == 1)
         {
-            for (int i = 3; i < 6; i++)
+            for (int i = redEnemy_List.Count-2; i < redEnemy_List.Count; i++)
             {
                 if (redEnemy_List[i] != null)
                 {

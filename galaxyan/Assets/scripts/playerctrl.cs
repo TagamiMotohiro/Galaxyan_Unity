@@ -12,9 +12,14 @@ public class playerctrl : MonoBehaviour
     public GameObject bullet;
     public GameObject b;
     public GameObject player_Expro;
+    public Sprite bulletEnpty;
+    public Sprite bulletFull;
+    SpriteRenderer myRend;
+    
     // Start is called before the first frame update
     void Start()
     {
+        myRend = this.gameObject.GetComponent<SpriteRenderer>();
         radius = 0.25f;
         enemy_List = GameObject.FindGameObjectsWithTag("Enemy").ToList();
     }
@@ -36,6 +41,10 @@ public class playerctrl : MonoBehaviour
             b = Instantiate(bullet, this.transform.position, Quaternion.identity);
             b.GetComponent<bulletctrl>().SetTagString("Enemy");
         }
+        if (b == null)
+        { myRend.sprite = bulletFull; }
+        else
+        { myRend.sprite = bulletEnpty; }
     }
     void CollisionEnemy()
     {
