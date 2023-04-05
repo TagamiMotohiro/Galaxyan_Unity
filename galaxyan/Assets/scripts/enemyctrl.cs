@@ -24,6 +24,7 @@ public class enemyctrl : MonoBehaviour
     float t=0;
     public float fly_Speed;//飛び出しのスピード
     bool flyed = false;//自分が飛び出しているかの判定
+    protected float axis=1;
     public GameObject bulletPrefub;
     public GameObject effect;
     GameObject maneger;
@@ -45,6 +46,7 @@ public class enemyctrl : MonoBehaviour
             {
                 flyobfj[i].localPosition = new Vector3(-flyobfj[i].localPosition.x, flyobfj[i].localPosition.y, 0);
                 flyPoint[i] = flyobfj[i].position;
+                axis = -1;
             }
         }
     }
@@ -106,7 +108,7 @@ public class enemyctrl : MonoBehaviour
         if (this.state == STATE.takeof)
         {
             this.transform.position = GetCurve(flyPoint[0], flyPoint[1], now_Point);
-            this.transform.rotation = Quaternion.AngleAxis(now_Point*180, Vector3.forward);
+            this.transform.rotation = Quaternion.AngleAxis(now_Point*(axis*180), Vector3.forward);
             now_Point+=fly_Speed*Time.deltaTime;
             if (now_Point >= 1)
             {
