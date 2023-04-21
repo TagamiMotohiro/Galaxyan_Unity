@@ -10,13 +10,13 @@ public class BlueEnemy : enemyctrl
 	Vector3 atackvector;
 	public override void Attack()
 	{
-		if (this.state != STATE.attack) {
+		if (this.GetState() != STATE.attack) {
 			firstflame = true;
 			return; }
 		if (firstflame)
 		{	
 			//“ËŒ‚‚·‚éƒxƒNƒgƒ‹‚ðŒˆ’è
-			atackPos = GameObject.Find("player");
+			atackPos = GameObject.FindGameObjectWithTag("Player");
 			if (atackPos != null)
 			{
 				atackvector = (atackPos.transform.position - this.transform.position).normalized;
@@ -27,6 +27,6 @@ public class BlueEnemy : enemyctrl
 			}
 			firstflame = false;
 		}
-		this.transform.position += atackvector * Time.deltaTime * attack_Speed;
+		this.transform.position += atackvector * Time.deltaTime * GetAtackSpeed();
 	}
 }

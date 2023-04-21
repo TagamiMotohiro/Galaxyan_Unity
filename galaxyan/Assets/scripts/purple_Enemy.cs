@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class purple_Enemy : enemyctrl
+public class purple_Enemy : enemyctrl//紫色(カーブ突進の敵)の突撃部分の継承クラス
 {
 	bool firstflame = true;
 	GameObject atackPos;
@@ -14,7 +14,8 @@ public class purple_Enemy : enemyctrl
 	float t1 = 0;
 	public override void Attack()
 	{
-		if (this.state != STATE.attack) {
+		//継承元クラスにあるStateが攻撃を示す状態になったら
+		if (this.GetState() != STATE.attack) {
 			firstflame = true;
 			t1 = 90f;
 			x = Random.Range(2.5f,3.5f);
@@ -22,12 +23,11 @@ public class purple_Enemy : enemyctrl
 			return; }
 		if (firstflame)
 		{
+			//攻撃開始状態になったら一度だけ処理
 			pos_x = transform.position.x;
 			firstflame = false;
-			Debug.Log("firstpos=" + pos_x.ToString());
 		}
-		Debug.Log((Mathf.Cos(t1*Mathf.Deg2Rad)));
-		this.transform.position = new Vector3(pos_x+(Mathf.Cos(t1*Mathf.Deg2Rad)*(x)),   this.transform.position.y-(this.attack_Speed*Time.deltaTime),0f);
-		t1 += (x1*axis);//提案　ランダムで変更　特定の時間まで倍率変更
+		this.transform.position = new Vector3(pos_x+(Mathf.Cos(t1*Mathf.Deg2Rad)*(x)),this.transform.position.y-(this.GetAtackSpeed()*Time.deltaTime),0f);
+		t1 += (x1*axis);
 	}
 }

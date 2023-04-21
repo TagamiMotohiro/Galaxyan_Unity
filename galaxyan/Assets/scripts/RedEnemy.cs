@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedEnemy : enemyctrl
+public class RedEnemy : enemyctrl//ボスの取り巻きの継承クラス
 {
 	bool firstflame = true;
-	GameObject atackPos;
+	Transform atackPos;
 	Vector3 atackvector;
 	public override void Attack()
 	{
-		if (this.state != STATE.attack)
+		if (this.GetState() != STATE.attack)
 		{
 			firstflame = true;
 			return;
@@ -18,7 +18,7 @@ public class RedEnemy : enemyctrl
 		{
 			var id = this.gameObject.name.Substring(13).ToCharArray();
 			//突撃するベクトルを決定
-			atackPos = GameObject.Find("player");
+			atackPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 			if (atackPos != null)
 			{
 				atackvector = (atackPos.transform.position - this.transform.position).normalized;
@@ -29,6 +29,6 @@ public class RedEnemy : enemyctrl
 			}
 			firstflame = false;
 		}
-		this.transform.position += atackvector * Time.deltaTime * attack_Speed;
+		this.transform.position += atackvector * Time.deltaTime * GetAtackSpeed();
 	}
 }

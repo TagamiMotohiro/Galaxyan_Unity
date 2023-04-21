@@ -15,6 +15,9 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //諸々の取得
+        //(最初からsceneに置いたほうが高速でコードとしての収まりもいいことは把握していますが、課題制作の方針からこのような処理をしています)
+        //(詳細はギャラクシアン模倣概要をご覧ください)
         formation_Speed = 0.4f;
         blueEnemy_List = new List<GameObject>();
         purpleEnemy_List = new List<GameObject>();
@@ -83,7 +86,7 @@ public class EnemyManager : MonoBehaviour
             if (blueEnemy_List[i] == null)
             {
                 continue;
-            } else if(blueEnemy_List[i].GetComponent<enemyctrl>().state==enemyctrl.STATE.idle)
+            } else if(blueEnemy_List[i].GetComponent<enemyctrl>().GetState()==enemyctrl.STATE.idle)
             {
                 blueEnemy_List[i].SendMessage("TakeOf");
                 break;
@@ -100,7 +103,7 @@ public class EnemyManager : MonoBehaviour
             {
                 continue;
             }
-            else if (purpleEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+            else if (purpleEnemy_List[i].GetComponent<enemyctrl>().GetState() == enemyctrl.STATE.idle)
             {
                 purpleEnemy_List[i].SendMessage("TakeOf");
                 break;
@@ -118,7 +121,7 @@ public class EnemyManager : MonoBehaviour
         GameObject e = Boss_List[r];
         if (e != null)
         {
-            if (e.GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+            if (e.GetComponent<enemyctrl>().GetState() == enemyctrl.STATE.idle)
             {
                 e.SendMessage("TakeOf");
             }
@@ -128,7 +131,7 @@ public class EnemyManager : MonoBehaviour
             for (int i = 0; i < 2; i++)
             {
                 if (redEnemy_List[i]!=null) {
-                    if (redEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+                    if (redEnemy_List[i].GetComponent<enemyctrl>().GetState() == enemyctrl.STATE.idle)
                     {
                         redEnemy_List[i].SendMessage("TakeOf");
                     }
@@ -141,7 +144,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if (redEnemy_List[i] != null)
                 {
-                    if (redEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+                    if (redEnemy_List[i].GetComponent<enemyctrl>().GetState() == enemyctrl.STATE.idle)
                     {
                         redEnemy_List[i].SendMessage("TakeOf");
                     }
@@ -161,7 +164,7 @@ public class EnemyManager : MonoBehaviour
             {
                 continue;
             }
-            else if (redEnemy_List[i].GetComponent<enemyctrl>().state == enemyctrl.STATE.idle)
+            else if (redEnemy_List[i].GetComponent<enemyctrl>().GetState() == enemyctrl.STATE.idle)
             {
                 redEnemy_List[i].SendMessage("TakeOf");
                 break;
