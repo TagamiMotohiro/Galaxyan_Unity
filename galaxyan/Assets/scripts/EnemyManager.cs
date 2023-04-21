@@ -20,6 +20,7 @@ public class EnemyManager : MonoBehaviour
         purpleEnemy_List = new List<GameObject>();
         redEnemy_List = new List<GameObject>();
         Boss_List = new List<GameObject>();
+        //すべての敵を別々のリストに取得
         for (int i = 0; i < 30; i++)
         {
             GameObject g = GameObject.Find("Enemy(Blue) (" + i.ToString("D2") + ")");
@@ -49,6 +50,7 @@ public class EnemyManager : MonoBehaviour
         coolTime++;
         if (coolTime > interval)
         {
+            //百分率で出す敵の分岐
             switch (n=Random.Range((int)0,(int)3))
             {
                 case 0:
@@ -71,6 +73,7 @@ public class EnemyManager : MonoBehaviour
 		{ formation_Speed = -(formation_Speed); }
 		this.transform.position += new Vector3(formation_Speed*Time.deltaTime,0,0);
     }
+    //分岐に応じて敵を離陸させる
     void blueEnemy()
     {
         if (blueEnemy_List == null) { return; }
@@ -104,6 +107,7 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+    //ボスを出すときは取り巻きも出す
     void BossEnemy()
     {
         if (Boss_List == null) {
@@ -148,6 +152,7 @@ public class EnemyManager : MonoBehaviour
     }
     void RedEnemy()
     {
+        
         if (redEnemy_List == null) { return; }
         redEnemy_List.RemoveAll(a => a == null);
         for (int i = 0; i < redEnemy_List.Count; i++)

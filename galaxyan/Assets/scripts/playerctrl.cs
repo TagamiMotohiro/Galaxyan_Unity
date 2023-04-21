@@ -46,6 +46,8 @@ public class playerctrl : MonoBehaviour
         else
         { myRend.sprite = bulletEnpty; }
     }
+    //自作の当たり判定
+    //リスト化した敵の当たり判定を順番に判定
     void CollisionEnemy()
     {
         enemy_List.RemoveAll(a=>a==null);
@@ -61,6 +63,7 @@ public class playerctrl : MonoBehaviour
             this.Hit();
         }
     }
+    //敵ヒット時コールバック
     void Hit()
     {
         Instantiate(player_Expro,this.transform.position,Quaternion.identity);

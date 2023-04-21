@@ -14,6 +14,7 @@ public class TitleScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ƒ^ƒCƒgƒ‹‚©‚ç‚Ì‘JˆÚ
         if (Input.GetKey(KeyCode.Space))
         {
             SceneManager.LoadScene("MainGame");

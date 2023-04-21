@@ -140,6 +140,7 @@ public class enemyctrl : MonoBehaviour
     }
     protected void BulletFire()
     {
+        //
         if (cool_time >= late && magazine > 0)
         {
             GameObject g =
