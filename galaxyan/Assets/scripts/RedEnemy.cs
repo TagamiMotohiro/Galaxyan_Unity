@@ -18,10 +18,10 @@ public class RedEnemy : enemyctrl//ボスの取り巻きの継承クラス
 		{
 			var id = this.gameObject.name.Substring(13).ToCharArray();
 			//突撃するベクトルを決定
-			atackPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+			atackPos = GameObject.FindGameObjectWithTag("Player").transform;
 			if (atackPos != null)
 			{
-				atackvector = (atackPos.transform.position - this.transform.position).normalized;
+				atackvector = (atackPos.position - this.transform.position).normalized;
 			}
 			else
 			{
