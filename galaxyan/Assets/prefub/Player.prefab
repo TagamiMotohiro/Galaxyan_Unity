@@ -99,13 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f147900c04454f4e8103d190ff0a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  enemy_List: []
   bullet: {fileID: 2463958891282877227, guid: 41a5838ccb05b2a48bbeb715a9527ca3, type: 3}
-  b: {fileID: 0}
-  player_Expro: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
+  Exprode_Effect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
   bulletEnpty: {fileID: 952608649, guid: 2f028ab6559d13c49b4486fefc00246a, type: 3}
   bulletFull: {fileID: 1337063300, guid: 2f028ab6559d13c49b4486fefc00246a, type: 3}
+  speed: 5
 --- !u!114 &8781014098212730981
 MonoBehaviour:
   m_ObjectHideFlags: 0

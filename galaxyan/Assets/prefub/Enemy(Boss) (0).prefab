@@ -163,12 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982b1d313be73e1499567ef5d3cd8eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
-  magazine: 2
-  late: 60
-  fly_Speed: 1
+  My_Animator: {fileID: 1189062332700215272}
   bulletPrefub: {fileID: 8952631433250794541, guid: d3e1cdf4242b0054ab3ef4eff917939e, type: 3}
   effect: {fileID: 1134129239631916, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
+  magazine: 2
+  late: 60
+  attack_Speed: 0
+  fly_Speed: 1
 --- !u!114 &4163096064503732913
 MonoBehaviour:
   m_ObjectHideFlags: 0

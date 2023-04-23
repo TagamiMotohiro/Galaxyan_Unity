@@ -176,13 +176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78706f3b7aca0f642b4643f51d1092e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  magazine: 2
-  late: 60
-  fly_Speed: 1
+  My_Animator: {fileID: 4994505522424954989}
   bulletPrefub: {fileID: 8952631433250794541, guid: d3e1cdf4242b0054ab3ef4eff917939e, type: 3}
   effect: {fileID: 1134129239631916, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
-  amplitude: 0.3
+  magazine: 2
+  late: 60
+  attack_Speed: 0
+  fly_Speed: 1
 --- !u!95 &4994505522424954989
 Animator:
   serializedVersion: 4

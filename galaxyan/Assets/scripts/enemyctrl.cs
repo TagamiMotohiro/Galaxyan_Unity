@@ -11,20 +11,27 @@ public class enemyctrl : MonoBehaviour
         takeof,//突撃のために隊列から離脱し浮きあがる
         attack//突撃
     }
+    [Header("自分のAnimator")]
+    [SerializeField]
+    Animator My_Animator;
+    [Header("弾のPrefub")]
     [SerializeField]
     GameObject bulletPrefub;
+    [Header("爆発のエフェクト")]
     [SerializeField]
     GameObject effect;
+    [Header("ステータス系の調整項目")]
     [SerializeField]
-    private STATE state;
+    float magazine;
     [SerializeField]
-    private float attack_Speed;//プレイヤーに突撃するときの速度
+    int late;
+    [SerializeField]
+    float attack_Speed;
     Transform[] flyobfj = new Transform[2];
     Vector3[] flyPoint = new Vector3[2];//飛び出しのポイント
     Vector3 p1;
     Vector3 Stert_Point;//戻ってくる地点
-    public float magazine;
-    public int late;
+    STATE state;
     int cool_time;
     float now_Point;//曲線補完用の数値
     float ReturnPosition_Y=0;//戻ってくる際のY座標(どれだけスタート地点から離れているか)
@@ -33,14 +40,14 @@ public class enemyctrl : MonoBehaviour
     protected float axis=1;
     GameObject maneger;
     GameObject player;
-    Animator anim;
+   
     // Start is called before the first frame update
     void Start()
     {
         //諸々の取得
         //(最初からsceneに置いたほうが高速でコードとしての収まりもいいことは把握していますが、課題制作の方針からこのような処理をしています)
         maneger = this.transform.root.gameObject;
-        anim = GetComponent<Animator>();
+        My_Animator = GetComponent<Animator>();
         attack_Speed = 3;
         player = GameObject.Find("player");
         p1 = this.transform.position;
@@ -85,11 +92,11 @@ public class enemyctrl : MonoBehaviour
         }
         if (state == STATE.idle)
         {
-            anim.SetBool("Idle", true);
+            My_Animator.SetBool("Idle", true);
         }
         else
         {
-            anim.SetBool("Idle", false);
+            My_Animator.SetBool("Idle", false);
         }
         Attack();
     }

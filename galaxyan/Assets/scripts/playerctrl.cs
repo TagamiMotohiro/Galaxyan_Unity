@@ -5,15 +5,23 @@ using System.Linq;
 
 public class playerctrl : MonoBehaviour
 {
+    [Header("弾のプレハブ")]
+    [SerializeField]
+    GameObject bullet;
+    [Header("爆発のエフェクト")]
+    [SerializeField]
+    GameObject Exprode_Effect;
+    [Header("弾がない時とある時の描画分け")]
+    [SerializeField]
+    Sprite bulletEnpty;
+    [SerializeField]
+    Sprite bulletFull;
     float radius;
+    GameObject b;
     public float speed;
     float horizontal=0;
-    public List<GameObject> enemy_List;
-    public GameObject bullet;
-    public GameObject b;
-    public GameObject player_Expro;
-    public Sprite bulletEnpty;
-    public Sprite bulletFull;
+    List<GameObject> enemy_List;
+    
     SpriteRenderer myRend;
     
     // Start is called before the first frame update
@@ -66,7 +74,7 @@ public class playerctrl : MonoBehaviour
     //敵ヒット時コールバック
     void Hit()
     {
-        Instantiate(player_Expro,this.transform.position,Quaternion.identity);
+        Instantiate(Exprode_Effect,this.transform.position,Quaternion.identity);
         this.gameObject.SetActive(false);
     }
 }

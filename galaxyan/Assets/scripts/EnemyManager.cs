@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    
+    [Header("敵出撃までのインターバル(秒)")]
+    [SerializeField]
+    float interval=3f;
+    float formation_Speed;
+    int n;//ランダム分岐させる変数
+    float coolTime=0f;
     List<GameObject> blueEnemy_List;
     List<GameObject> redEnemy_List;
     List<GameObject> Boss_List;
     List<GameObject> purpleEnemy_List;
-    public int interval=120;
-    float formation_Speed;
-    int n;
-    int coolTime=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +53,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        coolTime++;
+        coolTime+=Time.deltaTime;
         if (coolTime > interval)
         {
             //百分率で出す敵の分岐
