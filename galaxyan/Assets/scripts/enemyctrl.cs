@@ -112,7 +112,7 @@ public class enemyctrl : MonoBehaviour
         //
         ReturnPosition_Y+=0.1f*Time.deltaTime;
     }
-    private void Hit()//弾が当たったときに呼ばれるコールバック
+    public void Hit()//弾が当たったときに呼ばれるコールバック
     {
         Instantiate(effect, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);

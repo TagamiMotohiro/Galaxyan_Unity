@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a983d9c0b64ba0f45a033666c3ea7266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 400
+  interval: 2
 --- !u!1001 &2166181408024653036
 PrefabInstance:
   m_ObjectHideFlags: 0

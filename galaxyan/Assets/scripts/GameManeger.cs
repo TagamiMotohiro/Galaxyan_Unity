@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameManeger : MonoBehaviour
 {
     private GameObject player;
-    public GameObject player_Prefub;
-    public GameObject enemy_Formation;
-    public TMPro.TextMeshProUGUI text;
-    public TMPro.TextMeshProUGUI text2;
+    [Header ("各種prefub")]
+    [SerializeField]
+    GameObject player_Prefub;
+    [SerializeField]
+    GameObject enemy_Formation;
+    [SerializeField]
+    TMPro.TextMeshProUGUI text;
+    [SerializeField]
+    TMPro.TextMeshProUGUI text2;
 	// Start is called before the first frame update
 	private void Awake()
     {
@@ -23,11 +28,13 @@ public class GameManeger : MonoBehaviour
     {
         if (!player.activeSelf)
         {
+            //自機が死亡したらゲームオーバー表示
             Time.timeScale = 0.3f;
             text.gameObject.SetActive(true);
             text2.gameObject.SetActive(true);
             if (Input.GetKey(KeyCode.R))
             {
+                //Rキーでリトライ
                 SceneManager.LoadScene("MainGame");
             }
         }

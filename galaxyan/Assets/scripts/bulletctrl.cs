@@ -2,18 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletctrl : MonoBehaviour
+public class bulletctrl : MonoBehaviour//弾の当たり判定を返すクラス(敵味方共通)
 {
     public float speed;
     [SerializeField]
-    string tagstring;
+    string TargetTag;//当たり判定を返す対象のタグの文字列
     float bullet_alive = 0f;
-    SpriteRenderer thissprite;
-    
+    SpriteRenderer thisSprite;
+    List<CollisionCtrl> enemyCollision_List;
+
     // Start is called before the first frame update
     void Start()
     {
-        thissprite = this.GetComponent<SpriteRenderer>();
+        //敵の当たり判定を返すクラスを取得
+        GameObject[] g = GameObject.FindGameObjectsWithTag(TargetTag);
+        foreach (var Collision_Item in g)
+        {
+            enemyCollision_List.Add(Collision_Item.GetComponent<CollisionCtrl>());
+        }
+        thisSprite = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -24,7 +31,7 @@ public class bulletctrl : MonoBehaviour
     }
     void BulletTransForm()
     {
-        if (tagstring == "Player")
+        if (TargetTag == "Player")//ターゲットがプレイヤーか敵かで弾の動きを分岐
         {
             this.transform.position += Vector3.down * speed * Time.deltaTime;
         }
@@ -33,7 +40,7 @@ public class bulletctrl : MonoBehaviour
             this.transform.position += this.transform.up.normalized * speed * Time.deltaTime;
         }
         bullet_alive++;
-        if (!thissprite.isVisible&&bullet_alive>5f)
+        if (!thisSprite.isVisible&&bullet_alive>5f)
         {
             Destroy(this.gameObject);
         }
@@ -41,25 +48,23 @@ public class bulletctrl : MonoBehaviour
     }
     void ColisionDirection()//代入された対象に弾が当たっているかの判定
     {
-        GameObject[] enemy_List = GameObject.FindGameObjectsWithTag(tagstring);
-        if (enemy_List == null) { return; }
-        foreach (GameObject obj in enemy_List)
+        if (enemyCollision_List == null) { return; }
+        foreach (CollisionCtrl Collision in enemyCollision_List)
         {
-            BulletColision(obj);
+            BulletColision(Collision);
         }
     }
-    void BulletColision(GameObject enemy)//自作当たり判定
+    void BulletColision(CollisionCtrl enemy)//自作当たり判定
     {
-        var e = enemy.GetComponent<CollisionCtrl>();
-        if (Mathf.Abs(this.transform.position.x - enemy.transform.position.x) < e.ReturnRadius()+0.1 &&
-           Mathf.Abs(this.transform.position.y - enemy.transform.position.y) < e.ReturnRadius()+0.1)
+        if (Mathf.Abs(this.transform.position.x - enemy.transform.position.x) < enemy.ReturnRadius() &&
+           Mathf.Abs(this.transform.position.y - enemy.transform.position.y) < enemy.ReturnRadius())
         {
-            enemy.SendMessage("Hit");
+            enemy.gameObject.GetComponent<enemyctrl>().Hit();
             Destroy(this.gameObject);
         }
     }
     public void SetTagString(string tag)//当たる対象をtagを用いて設定する際に使用する文字列の変更
     {
-        tagstring = tag;
+        TargetTag = tag;
     }
 }
