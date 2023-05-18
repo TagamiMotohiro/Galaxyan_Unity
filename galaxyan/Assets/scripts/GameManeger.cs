@@ -18,6 +18,7 @@ public class GameManeger : MonoBehaviour
 	// Start is called before the first frame update
 	private void Awake()
     {
+        //ƒvƒŒƒCƒ„[‚Æ“G‘à—ñ‚ğ¶¬
         Time.timeScale = 1;
         player = Instantiate(player_Prefub);
         player.name = ("player");

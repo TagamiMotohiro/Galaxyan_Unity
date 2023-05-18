@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class playerctrl : MonoBehaviour
+public class Playerctrl : MonoBehaviour
 {
     [Header("弾のプレハブ")]
     [SerializeField]
-    GameObject bullet;
+    GameObject bulletPrefub;
     [Header("爆発のエフェクト")]
     [SerializeField]
     GameObject Exprode_Effect;
@@ -17,7 +17,7 @@ public class playerctrl : MonoBehaviour
     [SerializeField]
     Sprite bulletFull;
     float radius;
-    GameObject b;
+    GameObject bulletInstance;
     public float speed;
     float horizontal=0;
     List<GameObject> enemy_List;
@@ -44,15 +44,19 @@ public class playerctrl : MonoBehaviour
         if (horizontal < -3.5f) { horizontal = -3.5f; }
         if (horizontal > 3.5f) { horizontal = 3.5f; }
         this.transform.position = new Vector3(horizontal, -4, 0);
-        if (Input.GetKeyDown(KeyCode.Space)&&b==null)
-        {
-            b = Instantiate(bullet, this.transform.position, Quaternion.identity);
-            b.GetComponent<bulletctrl>().SetTagString("Enemy");
-        }
-        if (b == null)
+        BulletFire();
+        if (bulletInstance == null)
         { myRend.sprite = bulletFull; }
         else
         { myRend.sprite = bulletEnpty; }
+    }
+    void BulletFire()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && bulletInstance == null)
+        {
+            bulletInstance = Instantiate(bulletPrefub, this.transform.position, Quaternion.identity);
+            bulletInstance.GetComponent<Bulletctrl>().SetTarget("Enemy");
+        }
     }
     //自作の当たり判定
     //リスト化した敵の当たり判定を順番に判定

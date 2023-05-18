@@ -36,7 +36,6 @@ public class enemyctrl : MonoBehaviour
     float now_Point;//曲線補完用の数値
     float ReturnPosition_Y=0;//戻ってくる際のY座標(どれだけスタート地点から離れているか)
     public float fly_Speed;//飛び出しのスピード
-    bool flyed = false;//自分が飛び出しているかの判定
     protected float axis=1;
     GameObject maneger;
     GameObject player;
@@ -162,7 +161,7 @@ public class enemyctrl : MonoBehaviour
             GameObject g =
             Instantiate(bulletPrefub, this.transform.position, Quaternion.FromToRotation(Vector3.up, this.transform.up));
             //弾インスタンスの当たる対象を設定
-            g.GetComponent<bulletctrl>().SetTagString("Player");
+            g.GetComponent<Bulletctrl>().SetTarget("Player");
             cool_time = 0;
             magazine--;
         }

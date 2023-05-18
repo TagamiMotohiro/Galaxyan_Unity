@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletctrl : MonoBehaviour//弾の当たり判定を返すクラス(敵味方共通)
+public class Bulletctrl : MonoBehaviour//弾の当たり判定を返すクラス(敵味方共通)
 {
     public float speed;
     [SerializeField]
     string TargetTag;//当たり判定を返す対象のタグの文字列
     float bullet_alive = 0f;
-    SpriteRenderer thisSprite;
-    List<CollisionCtrl> enemyCollision_List;
+    [SerializeField]
+    SpriteRenderer MySpriteRenderer;
+    //敵の当たり判定を返すクラスのリスト
+    List<CollisionCtrl> enemyCollision_List=new List<CollisionCtrl>();
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,6 @@ public class bulletctrl : MonoBehaviour//弾の当たり判定を返すクラス(敵味方共通)
         {
             enemyCollision_List.Add(Collision_Item.GetComponent<CollisionCtrl>());
         }
-        thisSprite = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -40,7 +41,7 @@ public class bulletctrl : MonoBehaviour//弾の当たり判定を返すクラス(敵味方共通)
             this.transform.position += this.transform.up.normalized * speed * Time.deltaTime;
         }
         bullet_alive++;
-        if (!thisSprite.isVisible&&bullet_alive>5f)
+        if (!MySpriteRenderer.isVisible&&bullet_alive>5f)
         {
             Destroy(this.gameObject);
         }
@@ -63,7 +64,7 @@ public class bulletctrl : MonoBehaviour//弾の当たり判定を返すクラス(敵味方共通)
             Destroy(this.gameObject);
         }
     }
-    public void SetTagString(string tag)//当たる対象をtagを用いて設定する際に使用する文字列の変更
+    public void SetTarget(string tag)//当たる対象をtagを用いて設定する際に使用する文字列の変更
     {
         TargetTag = tag;
     }

@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class purple_Enemy : enemyctrl//‡F(ƒJ[ƒu“Ëi‚Ì“G)‚Ì“ËŒ‚•”•ª‚ÌŒp³ƒNƒ‰ƒX
+public class Purple_Enemy : enemyctrl//‡F(ƒJ[ƒu“Ëi‚Ì“G)‚Ì“ËŒ‚•”•ª‚ÌŒp³ƒNƒ‰ƒX
 {
 	bool firstflame = true;
-	GameObject atackPos;
-	Vector3 atackvector;
-	Vector3 curvevector;
+	//”½È“_@–½–¼‚ª“ä‚·‚¬‚ÄŒã‚©‚çŒ©•Ô‚µ‚Ä‰½‚µ‚Ä‚¢‚é‚Ì‚©‚í‚©‚è‚¸‚ç‚­‚È‚Á‚½
 	float x;
 	float x1;
 	float pos_x;
@@ -18,16 +16,21 @@ public class purple_Enemy : enemyctrl//‡F(ƒJ[ƒu“Ëi‚Ì“G)‚Ì“ËŒ‚•”•ª‚ÌŒp³ƒNƒ‰ƒ
 		if (this.GetState() != STATE.attack) {
 			firstflame = true;
 			t1 = 90f;
+			//U‚ê•‚ğƒ‰ƒ“ƒ_ƒ€‚Éæ“¾
 			x = Random.Range(2.5f,3.5f);
+			//¶‰E‚ÉU‚ê‚é‘¬“x‚ğƒ‰ƒ“ƒ_ƒ€‚Éæ“¾
 			x1 = Random.Range(0.25f, 0.5f);
 			return; }
 		if (firstflame)
 		{
 			//UŒ‚ŠJnó‘Ô‚É‚È‚Á‚½‚çˆê“x‚¾‚¯ˆ—
+			//“ËŒ‚‚ÌXÀ•W‚ğæ“¾
 			pos_x = transform.position.x;
 			firstflame = false;
 		}
+		//‰¡²‚ÍCos‚Å•âŠ®‚µ‚½ˆÊ’u‚É
+		//c²‚Í‚»‚Ì‚Ü‚Ü^‰º‚É
 		this.transform.position = new Vector3(pos_x+(Mathf.Cos(t1*Mathf.Deg2Rad)*(x)),this.transform.position.y-(this.GetAtackSpeed()*Time.deltaTime),0f);
-		t1 += (x1*axis);
+		t1 += x1*axis;
 	}
 }
